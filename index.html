@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Annotate</title>
+    <meta
+      name="description"
+      content="A browser-based image annotation tool for drawing, erasing, and exporting annotated images."
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-wrap" aria-label="Annotate application name">
+          <div class="brand-mark">A</div>
+          <span class="brand-text">Annotate</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="undoBtn" class="action-btn" type="button" aria-label="Undo last annotation">
+            ↶ Undo
+          </button>
+          <button id="redoBtn" class="action-btn" type="button" aria-label="Redo last annotation">
+            ↷ Redo
+          </button>
+          <button id="clearBtn" class="action-btn danger" type="button" aria-label="Clear all annotations">
+            Clear
+          </button>
+          <button id="downloadBtn" class="action-btn primary" type="button" aria-label="Download image">
+            Download
+          </button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <aside class="toolbar" aria-label="Annotation tools">
+          <button class="tool-btn active" type="button" data-tool="pen" aria-label="Pen tool">
+            <span class="tool-icon">✎</span>
+            <span>Pen</span>
+          </button>
+          <button class="tool-btn" type="button" data-tool="eraser" aria-label="Eraser tool">
+            <span class="tool-icon">⌫</span>
+            <span>Eraser</span>
+          </button>
+        </aside>
+
+        <aside class="properties-panel" aria-label="Brush properties">
+          <div class="prop-group">
+            <label for="colorPicker">Colour</label>
+            <input id="colorPicker" type="color" value="#1f2937" aria-label="Pick annotation colour" />
+          </div>
+
+          <div class="prop-group">
+            <label for="brushSize">Brush size</label>
+            <input id="brushSize" type="range" min="2" max="40" step="1" value="6" aria-label="Brush size" />
+            <span id="brushSizeValue" class="value-label">6 px</span>
+          </div>
+
+          <div class="prop-group">
+            <label for="opacityRange">Opacity</label>
+            <input id="opacityRange" type="range" min="0.1" max="1" step="0.1" value="1" aria-label="Annotation opacity" />
+            <span id="opacityValue" class="value-label">100%</span>
+          </div>
+        </aside>
+
+        <main class="editor-panel" aria-label="Image editor workspace">
+          <div id="uploadDropzone" class="upload-dropzone">
+            <div class="dropzone-content">
+              <div class="upload-icon" aria-hidden="true">⇪</div>
+              <h2>Drop an image here</h2>
+              <p>PNG, JPG, JPEG, or WebP</p>
+              <label class="file-picker" for="imageInput">
+                <input
+                  id="imageInput"
+                  type="file"
+                  accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp"
+                  aria-label="Choose an image to upload"
+                />
+                Choose Image
+              </label>
+            </div>
+          </div>
+
+          <div id="canvasStage" class="canvas-stage hidden" aria-live="polite">
+            <div class="canvas-wrapper">
+              <canvas id="imageCanvas" aria-label="Original image canvas"></canvas>
+              <canvas id="annotationCanvas" aria-label="Annotation canvas"></canvas>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div id="statusToast" class="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
