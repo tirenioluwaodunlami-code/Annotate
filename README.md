@@ -1,5 +1,7 @@
 # Annotate
 
+Live Demo: https://annotate.freehosting.dev/
+
 A lightweight, browser-based image annotation tool built from scratch using vanilla JavaScript, HTML5, and the HTML Canvas API.
 
 Whether you need to quickly markup a screenshot, point out a detail in a diagram, or scribble notes on an image, **Annotate** lets you do it right in your browser with zero bloat, no server uploads, and no account required.
